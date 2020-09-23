@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "self:/Users/jeongminsol/Desktop/test/Titanic.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../controller.py">
+   </FileRef>
+   <FileRef
+      location = "group:../entity.py">
+   </FileRef>
+   <FileRef
+      location = "group:../service.py">
+   </FileRef>
+   <FileRef
+      location = "group:../test.csv">
+   </FileRef>
+   <FileRef
+      location = "group:../train.csv">
+   </FileRef>
+</Workspace>

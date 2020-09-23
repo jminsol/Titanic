@@ -6,26 +6,40 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXFileReference section */
+		DA848F6E25199B9B005D7F3B /* service.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = service.py; sourceTree = "<group>"; };
+		DA848F7025199CBC005D7F3B /* entity.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = entity.py; sourceTree = "<group>"; };
+		DAD3B917251A3D6200F3DB0A /* controller.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = controller.py; sourceTree = "<group>"; };
+		DAD3B918251A412F00F3DB0A /* test.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.csv; sourceTree = "<group>"; };
+		DAD3B919251A413600F3DB0A /* train.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.csv; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		DA848F5E25189241005D7F3B = {
 			isa = PBXGroup;
 			children = (
+				DAD3B917251A3D6200F3DB0A /* controller.py */,
+				DA848F7025199CBC005D7F3B /* entity.py */,
+				DA848F6E25199B9B005D7F3B /* service.py */,
+				DAD3B918251A412F00F3DB0A /* test.csv */,
+				DAD3B919251A413600F3DB0A /* train.csv */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		DA848F6325189241005D7F3B /* test */ = {
+		DA848F6325189241005D7F3B /* Titanic */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = DA848F6625189241005D7F3B /* Build configuration list for PBXLegacyTarget "test" */;
+			buildConfigurationList = DA848F6625189241005D7F3B /* Build configuration list for PBXLegacyTarget "Titanic" */;
 			buildPhases = (
 			);
-			buildToolPath = /usr/bin/python;
+			buildToolPath = /usr/bin/python3;
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
-			name = test;
+			name = Titanic;
 			passBuildSettingsInEnvironment = 1;
 			productName = test;
 		};
@@ -42,7 +56,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DA848F6225189241005D7F3B /* Build configuration list for PBXProject "test" */;
+			buildConfigurationList = DA848F6225189241005D7F3B /* Build configuration list for PBXProject "Titanic" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -54,7 +68,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DA848F6325189241005D7F3B /* test */,
+				DA848F6325189241005D7F3B /* Titanic */,
 			);
 		};
 /* End PBXProject section */
@@ -197,7 +211,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DA848F6225189241005D7F3B /* Build configuration list for PBXProject "test" */ = {
+		DA848F6225189241005D7F3B /* Build configuration list for PBXProject "Titanic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA848F6425189241005D7F3B /* Debug */,
@@ -206,7 +220,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA848F6625189241005D7F3B /* Build configuration list for PBXLegacyTarget "test" */ = {
+		DA848F6625189241005D7F3B /* Build configuration list for PBXLegacyTarget "Titanic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA848F6725189241005D7F3B /* Debug */,
