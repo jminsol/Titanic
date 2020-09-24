@@ -3,6 +3,16 @@ from entity import Entity
 import pandas as pd
 import numpy as np
 
+
+from sklearn.tree import DecisionTreeClassifier #dtree
+from sklearn.ensemble import RandomForestClassifier #rforest
+from sklearn.naive_bayes import GaussianNB #nb
+from sklearn.neighbors import KNeighborsClassifier #knn
+from sklearn.svm import SVC #svm
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold   # k =count
+from sklearn.model_selection import cross_val_score
+
 """
 #### PassengerId  고객ID,
 #### Survived 생존여부,  --> 머신러닝 모델이 맞춰야 할 답
@@ -163,3 +173,34 @@ class Service:
         this.train = this.train
         this.test = this.test
         return this
+        
+    @staticmethod
+    def create_k_fold():
+        return KFold(n_splits=10, shuffle = True, random_state=0)
+    
+    
+    def accuracy_by_dtree(self,this):
+        dtree = DecisionTreeClassifier()
+        score = cross_val_score(dtree, this.train, this.label, cv=Service.create_k_fold(), n_jobs=1, scoring='accuracy')
+        return round(np.mean(score)*100,2)
+        
+    def accuracy_by_rforest(self,this):
+        rforest = RandomForestClassifier()
+        score = cross_val_score(rforest, this.train, this.label, cv=Service.create_k_fold(), n_jobs=1, scoring='accuracy')
+        return round(np.mean(score)*100,2)
+        
+    def accuracy_by_nb(self,this):
+        nb = GaussianNB()
+        score = cross_val_score(nb, this.train, this.label, cv=Service.create_k_fold(), n_jobs=1, scoring='accuracy')
+        return round(np.mean(score)*100,2)
+        
+    def accuracy_by_knn(self, this):
+        knn = KNeighborsClassifier()
+        score = cross_val_score(knn, this.train, this.label, cv=Service.create_k_fold(), n_jobs=1, scoring='accuracy')
+        return round(np.mean(score)*100,2)
+        
+    def accuracy_by_svm(self, this):
+        svm = SVC()
+        score = cross_val_score(svm, this.train, this.label, cv=Service.create_k_fold(), n_jobs=1, scoring='accuracy')
+        return round(np.mean(score)*100,2)
+        

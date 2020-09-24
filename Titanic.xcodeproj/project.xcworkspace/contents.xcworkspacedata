@@ -4,19 +4,4 @@
    <FileRef
       location = "self:/Users/jeongminsol/Desktop/test/Titanic.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:../controller.py">
-   </FileRef>
-   <FileRef
-      location = "group:../entity.py">
-   </FileRef>
-   <FileRef
-      location = "group:../service.py">
-   </FileRef>
-   <FileRef
-      location = "group:../test.csv">
-   </FileRef>
-   <FileRef
-      location = "group:../train.csv">
-   </FileRef>
 </Workspace>

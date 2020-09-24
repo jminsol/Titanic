@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
+from sklearn.ensemble import RandomForestClassifier #rforest
+
 from entity import Entity
 from service import Service
-
-
 
 class Controller:
 
@@ -56,17 +56,30 @@ class Controller:
         print(f'######## test na 체크 ##########')
         print(f'{this.test.isnull().sum()}')
         return this
+        
 
-    def learning(self):
-        pass
+    def learning(self, train, test):
+        service = self.service
+        this = self.modeling(train, test)
+        print('&&&&&&&&&&&&&&&&& Learning 결과  &&&&&&&&&&&&&&&&')
+        print(f'결정트리 검증결과: {service.accuracy_by_dtree(this)}')
+        print(f'랜덤포리 검증결과: {service.accuracy_by_rforest(this)}')
+        print(f'나이브베이즈 검증결과: {service.accuracy_by_nb(this)}')
+        print(f'KNN 검증결과: {service.accuracy_by_knn(this)}')
+        print(f'SVM 검증결과: {service.accuracy_by_svm(this)}')
 
-    def submit(self):
-        pass
+    def submit(self,train, test):
+        this = self.modeling(train,test)
+        clf = RandomForestClassifier()
+        clf.fit(this.train, this.label)
+        prediction = clf.predict(this.test)
+        pd.DataFrame(
+        {'PassengerId' : this.id, 'Survived': prediction}).to_csv(this.context + 'submission.csv', index =False)
 
 
 if __name__ == '__main__':
     ctrl = Controller()
-    ctrl.modeling('train.csv', 'test.csv')
+    ctrl.submit('train.csv', 'test.csv')
 
 
 
