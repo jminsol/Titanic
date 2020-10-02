@@ -15,17 +15,17 @@ from sklearn.model_selection import cross_val_score
 
 """
 #### PassengerId  고객ID,
-#### Survived 생존여부,  --> 머신러닝 모델이 맞춰야 할 답
-Pclass 승선권 1 = 1등석, 2 = 2등석, 3 = 3등석,
+#### Survived 생존여부,  --> Answer!!
+Pclass: 1 = First class, 2 = Second class, 3 = Third class,
 Name,
 Sex,
 Age,
-SibSp 동반한 형제, 자매, 배우자,
-Parch 동반한 부모, 자식,
-#### Ticket 티켓번호,
-Fare 요금,
-#### Cabin 객실번호,
-Embarked 승선한 항구명 C = 쉐브루, Q = 퀸즈타운, S = 사우스햄튼
+SibSp Siblings, sisters, partners,
+Parch Parents, Children,
+#### Ticket,
+Fare,
+#### Cabin,
+Embarked ports C = 쉐브루, Q = 퀸즈타운, S = 사우스햄튼
 """
 
 class Service:
@@ -81,11 +81,11 @@ class Service:
         Thus, treat passengers whose ages are unknown as unknown values in order to decrease errors of actual values, process their age to -.5 as a boundary value.
 
         '''
-        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf] # 이 파트는 범위를 뜻합니다.
+        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf] # 이 파트는 범위
          # -1 이상 0 미만....60이상 기타 ...
-         # [] 에 있으니 이것은 변수명이겠군요..라고 판단하셨으면 잘 이해한 겁니다.
+         # [] 에 있으니 이것은 변수명
         labels = ['Unknown', 'Baby', 'Child', 'Teenager','Student','Young Adult', 'Adult', 'Senior']
-        # [] 은 변수명으로 선언되었음
+        # [] 은 변수명으로 선언
         train['AgeGroup'] = pd.cut(train['Age'], bins, labels=labels)
         test['AgeGroup'] = pd.cut(train['Age'], bins, labels=labels)
         age_title_mapping = {
@@ -97,7 +97,7 @@ class Service:
             5: 'Young Adult',
             6: 'Adult',
             7: 'Senior'
-        } # 이렇게 []에서 {} 으로 처리하면 labels 를 값으로 처리하겠네요.
+        } # 이렇게 []에서 {} 으로 처리하면 labels 를 값으로 처리
         for x in range(len(train['AgeGroup'])):
             if train['AgeGroup'][x] == 'Unknown':
                 train['AgeGroup'][x] = age_title_mapping[train['Title'][x]]
