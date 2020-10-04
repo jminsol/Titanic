@@ -49,6 +49,8 @@ class Service:
 
     @staticmethod
     def drop_feature(this, feature) -> object:
+        # axis =0 for all ROWs in each COLUMN
+        # axis =1 for all COLUMNS in each ROW
         this.train = this.train.drop([feature], axis = 1)
         this.test = this.test.drop([feature], axis = 1) # p.149 에 보면 훈련, 테스트 세트로 나눈다
         return this
@@ -65,8 +67,8 @@ class Service:
         sex_mapping = {'male':0, 'female':1}
         for dataset in combine:
             dataset['Sex'] = dataset['Sex'].map(sex_mapping)
-        this.train = this.train # overriding
-        this.test = this.test
+        # this.train = this.train # overriding
+        # this.test = this.test //실험
         return this
 
     @staticmethod
@@ -88,26 +90,6 @@ class Service:
         # [] 은 변수명으로 선언
         train['AgeGroup'] = pd.cut(train['Age'], bins, labels=labels)
         test['AgeGroup'] = pd.cut(train['Age'], bins, labels=labels)
-        age_title_mapping = {
-            0: 'Unknown',
-            1: 'Baby',
-            2: 'Child',
-            3: 'Teenager',
-            4: 'Student',
-            5: 'Young Adult',
-            6: 'Adult',
-            7: 'Senior'
-        } # 이렇게 []에서 {} 으로 처리하면 labels 를 값으로 처리
-        for x in range(len(train['AgeGroup'])):
-            if train['AgeGroup'][x] == 'Unknown':
-                train['AgeGroup'][x] = age_title_mapping[train['Title'][x]]
-        for x in range(len(test['AgeGroup'])):
-            if test['AgeGroup'][x] == 'Unknown':
-                test['AgeGroup'][x] = age_title_mapping[test['Title'][x]]
-        
-#        age_title_mapping ={}
-#        for i in labels:
-#            age_title_mapping[i]=labels[i]
         
         age_mapping = {
             'Unknown': 0,
@@ -150,9 +132,9 @@ class Service:
     def embarked_norminal(this) -> object:
         this.train = this.train.fillna({'Embarked': 'S'}) # S가 가장 많아서 빈곳에 채움
         this.test = this.test.fillna({'Embarked': 'S'}) # 교과서 144
-        # 많은 머신러닝 라이브러리는 클래스 레이블이 *정수* 로 인코딩 되었다고 기대함
+        # Encoding class labels in *integers* 
         # 교과서 146 문자 blue = 0, green = 1, red = 2 로 치환 -> mapping 합니다.
-        this.train['Embarked'] = this.train['Embarked'].map({'S': 1, 'C' : 2, 'Q' : 3}) # ordinal 아닙니다.
+        this.train['Embarked'] = this.train['Embarked'].map({'S': 1, 'C' : 2, 'Q' : 3}) # This is not 'ordinal' 
         this.test['Embarked'] = this.test['Embarked'].map({'S': 1, 'C' : 2, 'Q' : 3})
         return this
 
@@ -161,6 +143,8 @@ class Service:
         combine = [this.train, this.test]
         for dataset in combine:
             dataset['Title'] = dataset.Name.str.extract('([A-Za-z]+)\.', expand=False)
+            # expand = true: print in coulums; expand = false: print in labels
+            # Created a new column 'Title' and saved data Starting with capital and ends with lower_case stop at '.' 
         for dataset in combine:
             dataset['Title'] = dataset['Title'].replace(['Capt','Col','Don','Dr','Major','Rev','Jonkheer','Dona', 'Mme'], 'Rare')
             dataset['Title'] = dataset['Title'].replace(['Countess','Lady','Sir'], 'Royal')

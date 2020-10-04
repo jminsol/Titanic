@@ -7,6 +7,7 @@ from service import Service
 
 class Controller:
 
+# self.entity => entity is an attribute of Controller instance. 
     def __init__(self):
         self.entity = Entity()
         self.service = Service()
@@ -35,8 +36,8 @@ class Controller:
         print(f'Embarked ports after processing: {this.train.head()}')
         this = service.title_norminal(this)
         print(f'Titles after processing: {this.train.head()}')
-        # name 변수에서 title 을 추출했으니 name 은 필요가 없어졌고, str 이니
-        # 후에 ML-lib 가 이를 인식하는 과정에서 에러를 발생시킬것이다.
+        # We extracted title out of name => no need for name anymore
+    
         this = service.drop_feature(this, 'Name')
         this = service.drop_feature(this, 'PassengerId')
         this = service.age_ordinal(this)
@@ -79,7 +80,8 @@ class Controller:
 
 if __name__ == '__main__':
     ctrl = Controller()
-    ctrl.submit('train.csv', 'test.csv')
+    ctrl.learning('train.csv', 'test.csv')
+    # ctrl.submit('train.csv', 'test.csv')
 
 
 
